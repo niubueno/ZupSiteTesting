@@ -1,7 +1,7 @@
 const { test, expect } = require("@playwright/test");
 
 test.beforeEach(async ({ page }, testInfo) => {
-    await page.goto("www.zup.com.br/");
+    await page.goto("http://www.zup.com.br");
 });
 
 test("navigating to the home page", async ({ page }) => {

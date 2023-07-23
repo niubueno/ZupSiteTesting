@@ -2,6 +2,12 @@ const { test, expect } = require("@playwright/test");
 
 test.beforeEach(async ({ page }, testInfo) => {
     console.log(`Running ${testInfo.title}`);
+    const headers = new Map();
+    headers.put(
+        "user-agent",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) `enter code here`AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
+    );
+    page.setExtraHTTPHeaders(headers);
     await page.goto("https://www.zup.com.br/");
 });
 

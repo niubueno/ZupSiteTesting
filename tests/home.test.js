@@ -1,11 +1,16 @@
 const { test, expect } = require("@playwright/test");
 
-test("navigating to the home page", async ({ page }) => {
+test.beforeEach(async ({ page }, testInfo) => {
+    console.log(`Running ${testInfo.title}`);
     await page.goto("https://www.zup.com.br/");
 });
 
+test("navigating to the home page", async ({ page }) => {
+    expect(page.url()).toBe("https://www.zup.com.br/");
+});
+
 test("Trying to recognize new tab opened", async ({ page }) => {
-    await page.goto("https://www.zup.com.br/");
+    expect(page.url()).toBe("https://www.zup.com.br/");
     const context = page.context();
 
     const [stackSpotPage] = await Promise.all([
@@ -15,6 +20,10 @@ test("Trying to recognize new tab opened", async ({ page }) => {
 
     await stackSpotPage.waitForLoadState(); // wait for the new tab to fully load
     // now, use `stackSpotPage` to access the newly opened tab, rather than `page`, which will still refer to the original page/tab.
-    await expect(stackSpotPage).toHaveURL("https://stackspot.com/en?homezuppt=");
-    await stackSpotPage.locator("text=Otimize custos com a StackSpot Cloud Services");
+    await expect(stackSpotPage).toHaveURL(
+        "https://stackspot.com/en?homezuppt="
+    );
+    await stackSpotPage.locator(
+        "text=Otimize custos com a StackSpot Cloud Services"
+    );
 });

@@ -24,3 +24,7 @@ test("Trying to recognize new tab opened", async ({ page }) => {
         "text=Otimize custos com a StackSpot Cloud Services"
     );
 });
+
+test("navigating to google", async ({ page }) => {
+  await page.goto("https://www.google.com.br/");
+});

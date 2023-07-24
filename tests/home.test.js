@@ -27,4 +27,5 @@ test("Trying to recognize new tab opened", async ({ page }) => {
 
 test("navigating to google", async ({ page }) => {
   await page.goto("https://www.google.com.br/");
+  await expect(page.getByRole('img', { name: 'Google' })).toBeVisible();
 });

@@ -1,15 +1,15 @@
 const { test, expect } = require("@playwright/test");
 
 test.beforeEach(async ({ page }, testInfo) => {
-    await page.goto("http://www.zup.com.br");
+    await page.goto("https://www.zup.com.br");
 });
 
 test("navigating to the home page", async ({ page }) => {
-    await expect(page).toHaveURL("www.zup.com.br");
+    await expect(page).toHaveURL("https://www.zup.com.br/");
 });
 
 test("Trying to recognize new tab opened", async ({ page }) => {
-    await expect(page).toHaveURL("www.zup.com.br");
+    await expect(page).toHaveURL("https://www.zup.com.br/");
     const context = page.context();
 
     const [stackSpotPage] = await Promise.all([

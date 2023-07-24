@@ -1,6 +1,12 @@
 const { test, expect } = require("@playwright/test");
 
 test.beforeEach(async ({ page }, testInfo) => {
+    const header = new Map();
+    header.set(
+        "User-Agent",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+    );
+    page.setExtraHTTPHeaders(header);
     await page.goto("https://www.zup.com.br");
 });
 
@@ -26,6 +32,6 @@ test("Trying to recognize new tab opened", async ({ page }) => {
 });
 
 test("navigating to google", async ({ page }) => {
-  await page.goto("https://www.google.com.br/");
-  await expect(page.getByRole('img', { name: 'Google' })).toBeVisible();
+    await page.goto("https://www.google.com.br/");
+    await expect(page.getByRole("img", { name: "Google" })).toBeVisible();
 });
